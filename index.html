@@ -1,0 +1,1692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Amalkrishna | Full Stack Developer</title>
+
+    <style>
+        /* =========================================
+           RESET
+        ========================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #080b12;
+            color: #f4f4f5;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        section {
+            scroll-margin-top: 80px;
+        }
+
+        /* =========================================
+           VARIABLES
+        ========================================= */
+
+        :root {
+            --bg: #080b12;
+            --bg-light: #0d111b;
+            --card: #111621;
+            --border: #202735;
+
+            --text: #f4f4f5;
+            --muted: #9ca3af;
+
+            --accent: #7c5cff;
+            --accent-light: #a78bfa;
+
+            --max-width: 1150px;
+        }
+
+        /* =========================================
+           NAVBAR
+        ========================================= */
+
+        .header {
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+
+            background: rgba(8, 11, 18, 0.85);
+            backdrop-filter: blur(15px);
+
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .navbar {
+            max-width: var(--max-width);
+            margin: auto;
+
+            height: 75px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 25px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .logo span,
+        .footer-logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--muted);
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-light);
+        }
+
+        /* =========================================
+           HERO
+        ========================================= */
+
+        .hero {
+            min-height: 100vh;
+
+            max-width: var(--max-width);
+            margin: auto;
+
+            padding: 150px 25px 80px;
+
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 70px;
+
+            align-items: center;
+        }
+
+        .hello {
+            color: var(--accent-light);
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 4px;
+
+            margin-bottom: 15px;
+        }
+
+        .hero h1 {
+            font-size: clamp(45px, 7vw, 80px);
+            line-height: 1;
+            letter-spacing: -4px;
+        }
+
+        .hero h1 span {
+            color: var(--accent);
+        }
+
+        .hero h2 {
+            margin-top: 20px;
+
+            font-size: clamp(25px, 4vw, 40px);
+            color: #d1d5db;
+        }
+
+        .hero h2 span {
+            color: var(--accent-light);
+        }
+
+        .hero-description {
+            max-width: 600px;
+
+            margin-top: 25px;
+
+            color: var(--muted);
+            font-size: 17px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+
+            margin-top: 35px;
+        }
+
+        .btn {
+            display: inline-block;
+
+            padding: 13px 24px;
+
+            border-radius: 8px;
+
+            font-size: 14px;
+            font-weight: 700;
+
+            transition: 0.3s;
+        }
+
+        .primary-btn {
+            background: var(--accent);
+            color: white;
+        }
+
+        .primary-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(124, 92, 255, 0.25);
+        }
+
+        .secondary-btn {
+            border: 1px solid var(--border);
+            color: var(--text);
+        }
+
+        .secondary-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent-light);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 25px;
+
+            margin-top: 30px;
+        }
+
+        .social-links a {
+            color: var(--muted);
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-light);
+        }
+
+        /* =========================================
+           CODE WINDOW
+        ========================================= */
+
+        .hero-card {
+            display: flex;
+            justify-content: center;
+        }
+
+        .code-window {
+            width: 100%;
+            max-width: 480px;
+
+            background: #0d111a;
+
+            border: 1px solid var(--border);
+            border-radius: 14px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 30px 80px rgba(0,0,0,0.35);
+        }
+
+        .window-top {
+            height: 45px;
+
+            display: flex;
+            align-items: center;
+
+            gap: 8px;
+
+            padding: 0 17px;
+
+            border-bottom: 1px solid var(--border);
+        }
+
+        .window-top span {
+            width: 11px;
+            height: 11px;
+
+            border-radius: 50%;
+
+            background: #343b4a;
+        }
+
+        .code {
+            padding: 30px;
+
+            font-family: "Courier New", monospace;
+            font-size: 14px;
+
+            color: #d1d5db;
+        }
+
+        .code p {
+            margin-bottom: 10px;
+        }
+
+        .indent {
+            padding-left: 25px;
+        }
+
+        .double-indent {
+            padding-left: 50px;
+        }
+
+        .purple {
+            color: #c084fc;
+        }
+
+        .blue {
+            color: #60a5fa;
+        }
+
+        .green {
+            color: #86efac;
+        }
+
+        /* =========================================
+           SECTIONS
+        ========================================= */
+
+        .section {
+            max-width: var(--max-width);
+
+            margin: auto;
+
+            padding: 110px 25px;
+        }
+
+        .section-title {
+            margin-bottom: 55px;
+        }
+
+        .section-title p {
+            color: var(--accent-light);
+
+            font-size: 12px;
+            font-weight: 700;
+
+            letter-spacing: 3px;
+
+            margin-bottom: 8px;
+        }
+
+        .section-title h2 {
+            font-size: 45px;
+            letter-spacing: -2px;
+        }
+
+        .section-title h2 span {
+            color: var(--accent);
+        }
+
+        /* =========================================
+           ABOUT
+        ========================================= */
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+
+            gap: 70px;
+        }
+
+        .about-text h3 {
+            font-size: 30px;
+            line-height: 1.2;
+
+            margin-bottom: 25px;
+        }
+
+        .about-text h3 span {
+            color: var(--accent-light);
+        }
+
+        .about-text p {
+            color: var(--muted);
+
+            margin-bottom: 18px;
+        }
+
+        .about-info {
+            display: grid;
+            gap: 15px;
+        }
+
+        .info-box {
+            padding: 25px;
+
+            background: var(--card);
+
+            border: 1px solid var(--border);
+
+            border-radius: 12px;
+
+            transition: 0.3s;
+        }
+
+        .info-box:hover {
+            transform: translateX(7px);
+            border-color: var(--accent);
+        }
+
+        .info-box span {
+            color: var(--accent);
+
+            font-weight: 800;
+        }
+
+        .info-box h3 {
+            margin-top: 5px;
+        }
+
+        .info-box p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        /* =========================================
+           SKILLS
+        ========================================= */
+
+        .skills {
+            background: var(--bg-light);
+            max-width: none;
+
+            padding-left: max(25px, calc((100vw - var(--max-width)) / 2));
+            padding-right: max(25px, calc((100vw - var(--max-width)) / 2));
+        }
+
+        .skills-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 18px;
+        }
+
+        .skill-card {
+            padding: 30px 22px;
+
+            background: var(--card);
+
+            border: 1px solid var(--border);
+
+            border-radius: 12px;
+
+            transition: 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-7px);
+
+            border-color: var(--accent);
+
+            box-shadow:
+                0 15px 40px rgba(0,0,0,0.25);
+        }
+
+        .skill-icon {
+            width: 45px;
+            height: 45px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 9px;
+
+            background: rgba(124,92,255,0.12);
+
+            color: var(--accent-light);
+
+            font-size: 13px;
+            font-weight: 800;
+
+            margin-bottom: 20px;
+        }
+
+        .skill-card h3 {
+            margin-bottom: 7px;
+        }
+
+        .skill-card p {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        /* =========================================
+           PROJECTS
+        ========================================= */
+
+        .projects-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 20px;
+        }
+
+        .project-card {
+            position: relative;
+
+            min-height: 380px;
+
+            padding: 35px;
+
+            background: var(--card);
+
+            border: 1px solid var(--border);
+
+            border-radius: 14px;
+
+            overflow: hidden;
+
+            transition: 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-7px);
+            border-color: var(--accent);
+        }
+
+        .project-number {
+            position: absolute;
+
+            right: 25px;
+            top: 15px;
+
+            font-size: 80px;
+            font-weight: 900;
+
+            color: rgba(255,255,255,0.025);
+        }
+
+        .project-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .project-type {
+            color: var(--accent-light);
+
+            font-size: 11px;
+            font-weight: 700;
+
+            letter-spacing: 2px;
+
+            margin-bottom: 15px;
+        }
+
+        .project-content h3 {
+            max-width: 450px;
+
+            font-size: 27px;
+            line-height: 1.2;
+
+            margin-bottom: 20px;
+        }
+
+        .project-content > p:not(.project-type) {
+            color: var(--muted);
+
+            font-size: 14px;
+
+            max-width: 550px;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+
+            gap: 8px;
+
+            margin-top: 25px;
+        }
+
+        .project-tech span {
+            padding: 6px 10px;
+
+            border-radius: 5px;
+
+            background: #191f2c;
+
+            color: #c4c9d4;
+
+            font-size: 11px;
+        }
+
+        .project-link {
+            display: inline-block;
+
+            margin-top: 25px;
+
+            color: var(--accent-light);
+
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .project-link:hover {
+            color: white;
+        }
+
+        /* =========================================
+           EXPERIENCE
+        ========================================= */
+
+        .experience {
+            background: var(--bg-light);
+
+            max-width: none;
+
+            padding-left: max(25px, calc((100vw - var(--max-width)) / 2));
+            padding-right: max(25px, calc((100vw - var(--max-width)) / 2));
+        }
+
+        .timeline {
+            max-width: 850px;
+
+            position: relative;
+
+            margin-left: 20px;
+        }
+
+        .timeline::before {
+            content: "";
+
+            position: absolute;
+
+            left: 5px;
+            top: 0;
+            bottom: 0;
+
+            width: 1px;
+
+            background: var(--border);
+        }
+
+        .timeline-item {
+            position: relative;
+
+            padding-left: 45px;
+
+            margin-bottom: 45px;
+        }
+
+        .timeline-dot {
+            position: absolute;
+
+            left: 0;
+            top: 6px;
+
+            width: 11px;
+            height: 11px;
+
+            border-radius: 50%;
+
+            background: var(--accent);
+
+            box-shadow:
+                0 0 0 5px rgba(124,92,255,0.1);
+        }
+
+        .timeline-date {
+            color: var(--accent-light);
+
+            font-size: 12px;
+            font-weight: 700;
+
+            letter-spacing: 1px;
+        }
+
+        .timeline-content h3 {
+            font-size: 25px;
+
+            margin-top: 5px;
+        }
+
+        .company {
+            color: #d1d5db;
+
+            margin: 5px 0 12px;
+        }
+
+        .timeline-content > p:last-child {
+            color: var(--muted);
+
+            max-width: 700px;
+        }
+
+        /* =========================================
+           CONTACT
+        ========================================= */
+
+        .contact-container {
+            display: grid;
+
+            grid-template-columns: 0.8fr 1.2fr;
+
+            gap: 80px;
+        }
+
+        .contact-text h3 {
+            font-size: 30px;
+
+            margin-bottom: 20px;
+        }
+
+        .contact-text > p {
+            color: var(--muted);
+
+            margin-bottom: 12px;
+        }
+
+        .contact-details {
+            margin-top: 35px;
+
+            display: grid;
+
+            gap: 20px;
+        }
+
+        .contact-details strong {
+            font-size: 13px;
+
+            color: var(--accent-light);
+        }
+
+        .contact-details p {
+            color: var(--muted);
+
+            margin-top: 3px;
+        }
+
+        .contact-details a {
+            color: var(--muted);
+            transition: 0.3s;
+        }
+
+        .contact-details a:hover {
+            color: var(--accent-light);
+        }
+
+        .contact-form {
+            display: grid;
+
+            gap: 14px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+
+            padding: 15px;
+
+            background: var(--card);
+
+            border: 1px solid var(--border);
+
+            border-radius: 8px;
+
+            outline: none;
+
+            color: white;
+
+            font-family: inherit;
+
+            transition: 0.3s;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: var(--accent);
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+        }
+
+        .contact-form button {
+            border: none;
+
+            cursor: pointer;
+
+            width: fit-content;
+        }
+
+        /* =========================================
+           FOOTER
+        ========================================= */
+
+        .footer {
+            padding: 45px 25px;
+
+            text-align: center;
+
+            border-top: 1px solid var(--border);
+
+            color: var(--muted);
+
+            font-size: 13px;
+        }
+
+        .footer-logo {
+            color: white;
+
+            font-size: 23px;
+            font-weight: 800;
+
+            margin-bottom: 10px;
+        }
+
+        .copyright {
+            margin-top: 10px;
+
+            font-size: 11px;
+        }
+
+        /* =========================================
+           RESPONSIVE
+        ========================================= */
+
+        @media (max-width: 900px) {
+
+            .nav-links {
+                gap: 15px;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+
+            .hero-card {
+                justify-content: flex-start;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+        }
+
+        @media (max-width: 650px) {
+
+            .navbar {
+                height: auto;
+
+                padding-top: 18px;
+                padding-bottom: 18px;
+
+                flex-direction: column;
+
+                gap: 15px;
+            }
+
+            .nav-links {
+                width: 100%;
+
+                justify-content: center;
+
+                flex-wrap: wrap;
+
+                gap: 12px;
+            }
+
+            .hero {
+                padding-top: 170px;
+            }
+
+            .hero h1 {
+                letter-spacing: -2px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                text-align: center;
+            }
+
+            .section {
+                padding-top: 80px;
+                padding-bottom: 80px;
+            }
+
+            .section-title h2 {
+                font-size: 36px;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-card {
+                min-height: auto;
+            }
+
+            .project-content h3 {
+                font-size: 23px;
+            }
+
+            .timeline {
+                margin-left: 0;
+            }
+        }
+
+        @media (max-width: 400px) {
+
+            .nav-links a {
+                font-size: 12px;
+            }
+
+            .hero h1 {
+                font-size: 43px;
+            }
+
+            .hero h2 {
+                font-size: 25px;
+            }
+
+            .code {
+                padding: 20px;
+
+                font-size: 11px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="header">
+        <nav class="navbar">
+
+            <a href="#home" class="logo">
+                <span>&lt;</span>Amal<span>/&gt;</span>
+            </a>
+
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#experience">Experience</a>
+                <a href="#contact">Contact</a>
+            </div>
+
+        </nav>
+    </header>
+
+
+    <!-- ================= HERO ================= -->
+
+    <main>
+
+        <section class="hero" id="home">
+
+            <div class="hero-content">
+
+                <p class="hello">HELLO, I'M</p>
+
+                <h1>
+                    Amalkrishna <span>Appu</span>
+                </h1>
+
+                <h2>
+                    Full Stack <span>Developer</span>
+                </h2>
+
+                <p class="hero-description">
+                    BCA graduate and Django Developer passionate about
+                    building modern, scalable and user-friendly web
+                    applications.
+                </p>
+
+                <div class="hero-buttons">
+
+                    <a href="#projects" class="btn primary-btn">
+                        View My Work
+                    </a>
+
+                    <a href="#contact" class="btn secondary-btn">
+                        Contact Me
+                    </a>
+
+                </div>
+
+                <div class="social-links">
+
+                    <a href="https://github.com/" target="_blank">
+                        GitHub
+                    </a>
+
+                    <a href="https://linkedin.com/" target="_blank">
+                        LinkedIn
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="hero-card">
+
+                <div class="code-window">
+
+                    <div class="window-top">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+
+                    <div class="code">
+
+                        <p>
+                            <span class="purple">class</span>
+                            <span class="blue">Developer</span>:
+                        </p>
+
+                        <p class="indent">
+                            name =
+                            <span class="green">
+                                "Amalkrishna"
+                            </span>
+                        </p>
+
+                        <p class="indent">
+                            role =
+                            <span class="green">
+                                "Full Stack Developer"
+                            </span>
+                        </p>
+
+                        <p class="indent">
+                            skills = [
+                        </p>
+
+                        <p class="double-indent">
+                            <span class="green">"Python"</span>,
+                        </p>
+
+                        <p class="double-indent">
+                            <span class="green">"Django"</span>,
+                        </p>
+
+                        <p class="double-indent">
+                            <span class="green">"MySQL"</span>,
+                        </p>
+
+                        <p class="double-indent">
+                            <span class="green">"HTML/CSS"</span>
+                        </p>
+
+                        <p class="indent">
+                            ]
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= ABOUT ================= -->
+
+        <section class="section about" id="about">
+
+            <div class="section-title">
+
+                <p>GET TO KNOW ME</p>
+
+                <h2>
+                    About <span>Me</span>
+                </h2>
+
+            </div>
+
+
+            <div class="about-content">
+
+                <div class="about-text">
+
+                    <h3>
+                        Building ideas into
+                        <span>digital experiences.</span>
+                    </h3>
+
+                    <p>
+                        I'm a BCA graduate with hands-on experience in
+                        Python, Django, MySQL and full-stack web
+                        development.
+                    </p>
+
+                    <p>
+                        I enjoy creating practical web applications
+                        that solve real-world problems. During my
+                        development journey, I have worked on projects
+                        involving EV charging, battery rental systems
+                        and AI-powered house blueprint generation.
+                    </p>
+
+                    <p>
+                        I'm always interested in learning new technologies
+                        and improving my development skills.
+                    </p>
+
+                </div>
+
+
+                <div class="about-info">
+
+                    <div class="info-box">
+
+                        <span>01</span>
+
+                        <h3>
+                            Web Development
+                        </h3>
+
+                        <p>
+                            Responsive and modern websites
+                        </p>
+
+                    </div>
+
+
+                    <div class="info-box">
+
+                        <span>02</span>
+
+                        <h3>
+                            Backend Development
+                        </h3>
+
+                        <p>
+                            Python & Django applications
+                        </p>
+
+                    </div>
+
+
+                    <div class="info-box">
+
+                        <span>03</span>
+
+                        <h3>
+                            Problem Solving
+                        </h3>
+
+                        <p>
+                            Building practical solutions
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= SKILLS ================= -->
+
+        <section class="section skills" id="skills">
+
+            <div class="section-title">
+
+                <p>WHAT I WORK WITH</p>
+
+                <h2>
+                    My <span>Skills</span>
+                </h2>
+
+            </div>
+
+
+            <div class="skills-grid">
+
+                <div class="skill-card">
+
+                    <div class="skill-icon">
+                        PY
+                    </div>
+
+                    <h3>Python</h3>
+
+                    <p>
+                        Backend development and application logic
+                    </p>
+
+                </div>
+
+
+                <div class="skill-card">
+
+                    <div class="skill-icon">
+                        DJ
+                    </div>
+
+                    <h3>Django</h3>
+
+                    <p>
+                        Full-stack web applications and REST APIs
+                    </p>
+
+                </div>
+
+
+                <div class="skill-card">
+
+                    <div class="skill-icon">
+                        DB
+                    </div>
+
+                    <h3>MySQL</h3>
+
+                    <p>
+                        Database design and management
+                    </p>
+
+                </div>
+
+
+                <div class="skill-card">
+
+                    <div class="skill-icon">
+                        HT
+                    </div>
+
+                    <h3>HTML5</h3>
+
+                    <p>
+                        Semantic and accessible web structures
+                    </p>
+
+                </div>
+
+
+                <div class="skill-card">
+
+                    <div class="skill-icon">
+                        CS
+                    </div>
+
+                    <h3>CSS3</h3>
+
+                    <p>
+                        Responsive and modern user interfaces
+                    </p>
+
+                </div>
+
+
+                <div class="skill-card">
+
+                    <div class="skill-icon">
+                        JS
+                    </div>
+
+                    <h3>JavaScript</h3>
+
+                    <p>
+                        Interactive web application development
+                    </p>
+
+                </div>
+
+
+                <div class="skill-card">
+
+                    <div class="skill-icon">
+                        GH
+                    </div>
+
+                    <h3>Git & GitHub</h3>
+
+                    <p>
+                        Version control and project management
+                    </p>
+
+                </div>
+
+
+                <div class="skill-card">
+
+                    <div class="skill-icon">
+                        FS
+                    </div>
+
+                    <h3>Full Stack</h3>
+
+                    <p>
+                        Frontend and backend application development
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= PROJECTS ================= -->
+
+        <section class="section projects" id="projects">
+
+            <div class="section-title">
+
+                <p>MY RECENT WORK</p>
+
+                <h2>
+                    Featured <span>Projects</span>
+                </h2>
+
+            </div>
+
+
+            <div class="projects-grid">
+
+                <!-- PROJECT 1 -->
+
+                <article class="project-card">
+
+                    <div class="project-number">
+                        01
+                    </div>
+
+                    <div class="project-content">
+
+                        <p class="project-type">
+                            DJANGO • FULL STACK
+                        </p>
+
+                        <h3>
+                            EV Charging & Battery Rental System
+                        </h3>
+
+                        <p>
+                            A web-based platform for managing EV
+                            charging stations and battery rental
+                            services. The system provides users with
+                            charging and rental functionality while
+                            allowing administrators to manage the
+                            platform.
+                        </p>
+
+                        <div class="project-tech">
+
+                            <span>Python</span>
+                            <span>Django</span>
+                            <span>MySQL</span>
+                            <span>HTML</span>
+                            <span>CSS</span>
+
+                        </div>
+
+                        <a href="#" class="project-link">
+                            View Project →
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <!-- PROJECT 2 -->
+
+                <article class="project-card">
+
+                    <div class="project-number">
+                        02
+                    </div>
+
+                    <div class="project-content">
+
+                        <p class="project-type">
+                            AI • DJANGO • WEB APP
+                        </p>
+
+                        <h3>
+                            AI House Blueprint Generator
+                        </h3>
+
+                        <p>
+                            An AI-powered web application designed to
+                            generate house blueprint concepts based on
+                            user requirements and inputs.
+                        </p>
+
+                        <div class="project-tech">
+
+                            <span>Python</span>
+                            <span>Django</span>
+                            <span>AI</span>
+                            <span>HTML</span>
+                            <span>CSS</span>
+
+                        </div>
+
+                        <a href="#" class="project-link">
+                            View Project →
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <!-- PROJECT 3 -->
+
+                <article class="project-card">
+
+                    <div class="project-number">
+                        03
+                    </div>
+
+                    <div class="project-content">
+
+                        <p class="project-type">
+                            WEB DEVELOPMENT
+                        </p>
+
+                        <h3>
+                            E-Commerce Website
+                        </h3>
+
+                        <p>
+                            A modern e-commerce website with product
+                            categories, product cards and a responsive
+                            user interface.
+                        </p>
+
+                        <div class="project-tech">
+
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>JavaScript</span>
+                            <span>Django</span>
+
+                        </div>
+
+                        <a href="#" class="project-link">
+                            View Project →
+                        </a>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= EXPERIENCE ================= -->
+
+        <section class="section experience" id="experience">
+
+            <div class="section-title">
+
+                <p>MY JOURNEY</p>
+
+                <h2>
+                    Experience & <span>Education</span>
+                </h2>
+
+            </div>
+
+
+            <div class="timeline">
+
+                <div class="timeline-item">
+
+                    <div class="timeline-dot"></div>
+
+                    <div class="timeline-content">
+
+                        <span class="timeline-date">
+                            7 Months
+                        </span>
+
+                        <h3>
+                            Django Developer Intern
+                        </h3>
+
+                        <p class="company">
+                            Software Development Internship
+                        </p>
+
+                        <p>
+                            Worked on Django-based web applications,
+                            database integration, frontend development
+                            and backend functionality.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="timeline-item">
+
+                    <div class="timeline-dot"></div>
+
+                    <div class="timeline-content">
+
+                        <span class="timeline-date">
+                            BCA
+                        </span>
+
+                        <h3>
+                            Bachelor of Computer Applications
+                        </h3>
+
+                        <p class="company">
+                            Computer Applications
+                        </p>
+
+                        <p>
+                            Studied programming, databases, web
+                            development, software engineering and
+                            computer science fundamentals.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= CONTACT ================= -->
+
+        <section class="section contact" id="contact">
+
+            <div class="section-title">
+
+                <p>LET'S CONNECT</p>
+
+                <h2>
+                    Get In <span>Touch</span>
+                </h2>
+
+            </div>
+
+
+            <div class="contact-container">
+
+                <div class="contact-text">
+
+                    <h3>
+                        Have a project in mind?
+                    </h3>
+
+                    <p>
+                        I'm always interested in new opportunities,
+                        interesting projects and collaborations.
+                    </p>
+
+                    <p>
+                        Feel free to get in touch with me.
+                    </p>
+
+
+                    <div class="contact-details">
+
+                        <div>
+
+                            <strong>Email</strong>
+
+                            <p>
+                                <a href="mailto:amalkrishnaappuu@gmail.com">
+                                    amalkrishnaappuu@gmail.com
+                                </a>
+                            </p>
+
+                        </div>
+
+
+                        <div>
+
+                            <strong>Phone</strong>
+
+                            <p>
+                                <a href="tel:+917902765593">
+                                    +91 79027 65593
+                                </a>
+                            </p>
+
+                        </div>
+
+
+                        <div>
+
+                            <strong>Location</strong>
+
+                            <p>
+                                Kerala, India
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <form class="contact-form"
+                      action="mailto:amalkrishnaappuu@gmail.com"
+                      method="post"
+                      enctype="text/plain">
+
+                    <input
+                        type="text"
+                        name="name"
+                        placeholder="Your Name"
+                        required
+                    >
+
+                    <input
+                        type="email"
+                        name="email"
+                        placeholder="Your Email"
+                        required
+                    >
+
+                    <input
+                        type="text"
+                        name="subject"
+                        placeholder="Subject"
+                    >
+
+                    <textarea
+                        name="message"
+                        rows="6"
+                        placeholder="Your Message"
+                        required
+                    ></textarea>
+
+                    <button
+                        type="submit"
+                        class="btn primary-btn"
+                    >
+                        Send Message
+                    </button>
+
+                </form>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="footer">
+
+        <div class="footer-logo">
+            <span>&lt;</span>Amal<span>/&gt;</span>
+        </div>
+
+        <p>
+            Designed & Built with HTML & CSS
+        </p>
+
+        <p class="copyright">
+            © 2026 Amalkrishna. All Rights Reserved.
+        </p>
+
+    </footer>
+
+</body>
+</html>
